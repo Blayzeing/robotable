@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Spinnaaar</title>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+  <button onclick="start()" >Start</button>
+  <script>
+    const socket = io('http://localhost');
+    //const socket = io('http://1922.168.4.1:80');
+    
+    socket.on('connect', function() {
+      getCam();
+    });
+
+    function start()
+    {
+      socket.emit('start', ["eggs", "beans", "chips"]);
+    }
+    function getCam()
+    {
+      socket.emit('getCam');
+    }
+      
+    //const speed = [7,7];// l, r
+    //function goFaster(i)
+    //{
+    //  // Gotta go fast
+    //  speed[i] = Math.min(14, speed[i]+1);// Increase the ith wheel's speed, capping at 14.
+    //  sendSpeed();
+    //}
+    //function goSlower(i)
+    //{
+    //  // John freeman
+    //  speed[i] = Math.max(0, speed[i]-1);// Decrease the ith wheel's speed, capping at 0.
+    //  sendSpeed();
+    //}
+    //function sendSpeed()
+    //{
+    //  // Transform the speed array into a byte to send to the robot
+    //  // Each half of the byte represents an element of the speed array, with each speed being an integer between 0 and 14,
+    //  // which, robot-side will be mapped to power scalars between -1 and 1 respectively, with 7 being 0.
+    //  let byte = speed[0]<<4;
+    //  byte = byte & 0b11110000;
+    //  byte = byte | (speed[1] & 0b00001111);
+    //  socket.emit('motor functions', byte);
+    //}
+  </script>
+  </body>
+</html>
